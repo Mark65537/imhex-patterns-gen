@@ -176,3 +176,19 @@ struct PlayerSequence {
 };
 
 PlayerSequence playerSequence @ 0xDFC8;
+
+//Portraits
+
+struct PortraitData {
+    u8 TileSet[894];
+    u32 ref_to_TileSet;
+    padding[4];
+    u32 ref_to_TileMap;
+    padding[32];
+    u32 ref_to_TileMap_again;
+    u32 unknown; //maybe TileMap Size
+    padding[8];
+    u8 TileMap[71];
+};
+
+PortraitData rainPortrait @ 0xAA3B4;
