@@ -177,18 +177,26 @@ struct PlayerSequence {
 
 PlayerSequence playerSequence @ 0xDFC8;
 
+//Graphic archive
+
+struct ArchiveHeader {
+    u16 Type
+};
+
+
 //Portraits
 
 struct PortraitData {
-    u8 TileSet[894];
-    u32 ref_to_TileSet;
+    //u8 TileSet[894];
+    u32 ref_TileSet;
     padding[4];
-    u32 ref_to_TileMap;
+    u32 ref_TileMap;
     padding[32];
     u32 ref_to_TileMap_again;
-    u32 unknown; //maybe TileMap Size
+    u32 TileSet_Size [[comment("TileSet Size")]];
     padding[8];
-    u8 TileMap[71];
+    u8 TileMap[72]; // not constant number
 };
 
-PortraitData rainPortrait @ 0xAA3B4;
+PortraitData rainPortrait @ 0xAA732;//0xAA3B4;
+PortraitData sonyaPortrait @ 0xAC4AC;//0xAC054;
