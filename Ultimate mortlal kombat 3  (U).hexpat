@@ -138,6 +138,10 @@ struct Header {
 
 Header header @ 0x100;
 
+//CONSTANTS
+u8 PLAYABLE_PLAYER_COUNT = 24; //0x18
+u8 ALL_PLAYER_COUNT = 27; //0x1B
+
 //Sequence of characters in Player Select
 
 enum CHARS : u16 {
