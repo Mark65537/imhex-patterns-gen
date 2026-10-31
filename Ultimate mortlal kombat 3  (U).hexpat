@@ -199,4 +199,26 @@ struct PortraitData {
 };
 
 PortraitData rainPortrait @ 0xAA732;//0xAA3B4;
-PortraitData sonyaPortrait @ 0xAC4AC;//0xAC054;
+PortraitData sonyaPortrait @ 0xAC4AC;//0xAC054;PortraitData reptilePortrait @ 0xAAB56;//0xAA3B4;
+PortraitData strykerPortrait @ 0xAAF78;//0xAC054;
+PortraitData jaxPortrait @ 0xAB390;//0xAA3B4;
+PortraitData nightwolfPortrait @ 0xAB82E;//0xAC054;
+PortraitData jadePortrait @ 0xABCC0;//0xAA3B4;
+PortraitData noobSaibotPortrait @ 0xABFA0;//0xAC054;
+PortraitData sonyaPortrait @ 0xAC4AC;//0xAA3B4;
+PortraitData kanoPortrait @ 0xAC94E;//0xAC054;
+PortraitData MileenaPortrait @ 0xACDB4;
+//PortraitData secretCharPortrait @ 0x;
+PortraitData unmaskedSubZPortrait @ 0xAD6D4;
+PortraitData classicSubZPortrait @ 0xADBB0;
+PortraitData kungLaoPortrait @ 0xADFD4;
+PortraitData sectorPortrait @ 0xAE474;
+PortraitData kitanaPortrait @ 0xAE93C;
+PortraitData ermacPortrait @ 0xAD182;
+PortraitData scorpionPortrait @ 0xAED54;
+PortraitData cyraxPortrait @ 0xAF1FA;
+PortraitData kabalPortrait @ 0xAF654;
+PortraitData sindelPortrait @ 0xAFB1E;
+PortraitData smokePortrait @ 0xB0080;
+PortraitData luiKangPortrait @ 0xB0538;
+PortraitData shangTsungPortrait @ 0xB0922;
