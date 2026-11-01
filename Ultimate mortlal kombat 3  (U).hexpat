@@ -139,7 +139,8 @@ struct Header {
 Header header @ 0x100;
 
 //CONSTANTS
-u8 PLAYABLE_PLAYER_COUNT = 24; //0x18
+
+u8 PLAYABLE_PLAYER_COUNT = 24; //0x18 with secret
 u8 ALL_PLAYER_COUNT = 27; //0x1B
 
 //Sequence of characters in Player Select
@@ -170,21 +171,21 @@ enum CHARS : u16 {
     NoobSaibot = 0x17,
     Rain = 0x18,
     Chameleon = 0x19,
-    Motaro = 0x1A,
-    ShaoKahn = 0x1B,
+    ShaoKahn = 0x1A,
+    Motaro = 0x1B,
     Exception = 0x1C
 };
 
-struct PlayerSequence {
-    CHARS sequence[24];
-};
-
 u32 rosterRef @ 0xDD4C;
-PlayerSequence playerSequence @ 0xDFC8;
+
+u16 defaultFirstPlayer @ 0xD43E;
+u16 defaultSecondPlayer @ 0xD446;
+
+CHARS playerSequence[24] @ rosterRef; //0xDFC8
 
 u32 RosterIndexesRef @ 0xDFF8;
 
-u8 RosterIndexes[25] @ RosterIndexesRef;
+u8 RosterIndexes[25] @ RosterIndexesRef; // 0x0000E018
 
 //Graphic archive
 
@@ -267,30 +268,34 @@ enum PORTRAIT_HEADER_REF : u32 {
     //ShaoKahn = 0x1B
 };
 
-PORTRAIT_HEADER_REF RainPortraitRef @ PORTRAIT_HEADER_POINTER::Rain;
-PORTRAIT_HEADER_REF ReptilePortraitRef @ PORTRAIT_HEADER_POINTER::Reptile;
-PORTRAIT_HEADER_REF StrykerPortraitRef @ PORTRAIT_HEADER_POINTER::Stryker;
-PORTRAIT_HEADER_REF JaxPortraitRef @ PORTRAIT_HEADER_POINTER::Jax;
-PORTRAIT_HEADER_REF NightWolfPortraitRef @ PORTRAIT_HEADER_POINTER::Nightwolf;
-PORTRAIT_HEADER_REF JadePortraitRef @ PORTRAIT_HEADER_POINTER::Jade;
-PORTRAIT_HEADER_REF NoobSaibotPortraitRef @ PORTRAIT_HEADER_POINTER::NoobSaibot;
-PORTRAIT_HEADER_REF SonyaPortraitRef @ PORTRAIT_HEADER_POINTER::Sonya;
-PORTRAIT_HEADER_REF KanoPortraitRef @ PORTRAIT_HEADER_POINTER::Kano;
-PORTRAIT_HEADER_REF MileenaPortraitRef @ PORTRAIT_HEADER_POINTER::Mileena;
-PORTRAIT_HEADER_REF SecretCharPortraitRef @ PORTRAIT_HEADER_POINTER::SecretChar;
-PORTRAIT_HEADER_REF UnmaskedSubZPortraitRef @ PORTRAIT_HEADER_POINTER::UnmaskedSubZ;
-PORTRAIT_HEADER_REF ClassicSubzPortraitRef @ PORTRAIT_HEADER_POINTER::ClassicSubZ;
-PORTRAIT_HEADER_REF KungLaoPortraitRef @ PORTRAIT_HEADER_POINTER::KungLao;
-PORTRAIT_HEADER_REF SectorPortraitRef @ PORTRAIT_HEADER_POINTER::Sector;
-PORTRAIT_HEADER_REF KitanaPortraitRef @ PORTRAIT_HEADER_POINTER::Kitana;
-PORTRAIT_HEADER_REF ErmacPortraitRef @ PORTRAIT_HEADER_POINTER::Ermac;
-PORTRAIT_HEADER_REF ScorpionPortraitRef @ PORTRAIT_HEADER_POINTER::Scorpion;
-PORTRAIT_HEADER_REF CyraxPortraitRef @ PORTRAIT_HEADER_POINTER::Cyrax;
-PORTRAIT_HEADER_REF KabalPortraitRef @ PORTRAIT_HEADER_POINTER::Kabal;
-PORTRAIT_HEADER_REF SindelPortraitRef @ PORTRAIT_HEADER_POINTER::Sindel;
-PORTRAIT_HEADER_REF SmokePortraitRef @ PORTRAIT_HEADER_POINTER::Smoke;
-PORTRAIT_HEADER_REF LiuKangPortraitRef @ PORTRAIT_HEADER_POINTER::LiuKang;
-PORTRAIT_HEADER_REF ShangTsungPortraitRef @ PORTRAIT_HEADER_POINTER::ShangTsung;
+struct PortraitPointers {
+    PORTRAIT_HEADER_REF RainPortraitRef @ PORTRAIT_HEADER_POINTER::Rain;
+    PORTRAIT_HEADER_REF ReptilePortraitRef @ PORTRAIT_HEADER_POINTER::Reptile;
+    PORTRAIT_HEADER_REF StrykerPortraitRef @ PORTRAIT_HEADER_POINTER::Stryker;
+    PORTRAIT_HEADER_REF JaxPortraitRef @ PORTRAIT_HEADER_POINTER::Jax;
+    PORTRAIT_HEADER_REF NightWolfPortraitRef @ PORTRAIT_HEADER_POINTER::Nightwolf;
+    PORTRAIT_HEADER_REF JadePortraitRef @ PORTRAIT_HEADER_POINTER::Jade;
+    PORTRAIT_HEADER_REF NoobSaibotPortraitRef @ PORTRAIT_HEADER_POINTER::NoobSaibot;
+    PORTRAIT_HEADER_REF SonyaPortraitRef @ PORTRAIT_HEADER_POINTER::Sonya;
+    PORTRAIT_HEADER_REF KanoPortraitRef @ PORTRAIT_HEADER_POINTER::Kano;
+    PORTRAIT_HEADER_REF MileenaPortraitRef @ PORTRAIT_HEADER_POINTER::Mileena;
+    PORTRAIT_HEADER_REF SecretCharPortraitRef @ PORTRAIT_HEADER_POINTER::SecretChar;
+    PORTRAIT_HEADER_REF UnmaskedSubZPortraitRef @ PORTRAIT_HEADER_POINTER::UnmaskedSubZ;
+    PORTRAIT_HEADER_REF ClassicSubzPortraitRef @ PORTRAIT_HEADER_POINTER::ClassicSubZ;
+    PORTRAIT_HEADER_REF KungLaoPortraitRef @ PORTRAIT_HEADER_POINTER::KungLao;
+    PORTRAIT_HEADER_REF SectorPortraitRef @ PORTRAIT_HEADER_POINTER::Sector;
+    PORTRAIT_HEADER_REF KitanaPortraitRef @ PORTRAIT_HEADER_POINTER::Kitana;
+    PORTRAIT_HEADER_REF ErmacPortraitRef @ PORTRAIT_HEADER_POINTER::Ermac;
+    PORTRAIT_HEADER_REF ScorpionPortraitRef @ PORTRAIT_HEADER_POINTER::Scorpion;
+    PORTRAIT_HEADER_REF CyraxPortraitRef @ PORTRAIT_HEADER_POINTER::Cyrax;
+    PORTRAIT_HEADER_REF KabalPortraitRef @ PORTRAIT_HEADER_POINTER::Kabal;
+    PORTRAIT_HEADER_REF SindelPortraitRef @ PORTRAIT_HEADER_POINTER::Sindel;
+    PORTRAIT_HEADER_REF SmokePortraitRef @ PORTRAIT_HEADER_POINTER::Smoke;
+    PORTRAIT_HEADER_REF LiuKangPortraitRef @ PORTRAIT_HEADER_POINTER::LiuKang;
+    PORTRAIT_HEADER_REF ShangTsungPortraitRef @ PORTRAIT_HEADER_POINTER::ShangTsung;
+};
+
+PortraitPointers portraitPointers @ PORTRAIT_HEADER_POINTER::Rain;
 
 PortraitData rainPortrait @ PORTRAIT_HEADER_REF::Rain;
 PortraitData reptilePortrait @ PORTRAIT_HEADER_REF::Reptile;
