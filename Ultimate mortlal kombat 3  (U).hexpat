@@ -325,3 +325,41 @@ PortraitData sindelPortrait @ PORTRAIT_HEADER_REF::Sindel;
 PortraitData smokePortrait @ PORTRAIT_HEADER_REF::Smoke;
 PortraitData liuKangPortrait @ PORTRAIT_HEADER_REF::LiuKang;
 PortraitData shangTsungPortrait @ PORTRAIT_HEADER_REF::ShangTsung;
+
+
+
+struct Coord {
+    u16 x;
+    u16 y;
+};
+
+struct RosterFrame {
+    u16 Rain;
+    u16 Reptile;
+    u16 Stryker;
+    u16 Jax;
+    u16 Nightwolf;
+    u16 Jade;
+    u16 NoobSaibot;
+    u16 Sonya;
+    u16 Kano;
+    u16 Mileena;
+    u16 SecretChar; 
+    u16 UnmaskedSubZ;
+    u16 ClassicSubZ;
+    u16 KungLao;
+    u16 Sector;
+    u16 Kitana;
+    u16 Ermac;
+    u16 Scorpion;
+    u16 Cyrax;
+    u16 Kabal;
+    u16 Sindel;
+    u16 Smoke;
+    u16 LiuKang;
+    u16 ShangTsung;
+};
+
+u32 rosterFrameRef @ 0xDE86;
+
+Coord rosterFrame[24] @ rosterFrameRef;
