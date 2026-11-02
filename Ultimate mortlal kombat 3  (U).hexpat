@@ -183,10 +183,14 @@ u16 defaultSecondPlayer @ 0xD446;
 
 CHARS playerSequence[24] @ rosterRef; //0xDFC8
 
-u32 RosterIndexesRef @ 0xDFF8;
+u32 LplayerRosterIndexesRef @ 0xDFF8;
+u32 RplayerRosterIndexesRef @ 0xDFFC;
+u32 DplayerRosterIndexesRef @ 0xE000;
+//u32 UplayerRosterIndexesRef @ 0xDFFC;
 
-u8 RosterIndexes[25] @ RosterIndexesRef; // 0x0000E018
-
+u8 LRosterIndexes[24] @ LplayerRosterIndexesRef; // 0x0000E018
+u8 RRosterIndexes[25] @ RplayerRosterIndexesRef;
+u8 DRosterIndexes[48] @ DplayerRosterIndexesRef;
 //Graphic archive
 
 struct ArchiveHeader {
